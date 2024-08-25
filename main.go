@@ -1,8 +1,25 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
 
 func main() {
 
-	fmt.Println("Hello world!")
+	reader := bufio.NewReader(os.Stdin)
+
+	for {
+
+		fmt.Print("Pokedex > ")
+		text, _ := reader.ReadString('\n')
+
+		err := executeCommand(text)
+
+		if err != nil {
+			fmt.Println(err.Error())
+			os.Exit(1)
+		}
+	}
 }
