@@ -1,14 +1,14 @@
 package main
 
-import (
-	"errors"
-	"strings"
-)
-
 type cliCommand struct {
 	name        string
 	description string
-	callback    func() error
+	callback    func(*memory) error
+}
+
+type memory struct {
+	previousLocations *string
+	nextLocations     *string
 }
 
 func getCommands() map[string]cliCommand {
@@ -18,19 +18,20 @@ func getCommands() map[string]cliCommand {
 			description: "Displays a help message",
 			callback:    commandHelp,
 		},
+		"map": {
+			name:        "map",
+			description: "Displays the next 20 map locations",
+			callback:    commandMap,
+		},
+		"mapb": {
+			name:        "mapb",
+			description: "Displays the previous 20 map locations",
+			callback:    commandMapB,
+		},
 		"exit": {
 			name:        "exit",
 			description: "Exit the Pokedex",
 			callback:    commandExit,
 		},
 	}
-}
-
-func executeCommand(command string) error {
-	selectedCommand, ok := getCommands()[strings.TrimSpace(command)]
-	if !ok {
-		return errors.New("invalid command selected: try `help` to see available commands")
-	}
-
-	return selectedCommand.callback()
 }
