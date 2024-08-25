@@ -8,14 +8,18 @@ import (
 
 func main() {
 
-	reader := bufio.NewReader(os.Stdin)
+	reader := bufio.NewScanner(os.Stdin)
 
 	for {
 
 		fmt.Print("Pokedex > ")
-		text, _ := reader.ReadString('\n')
+		reader.Scan()
 
-		err := executeCommand(text)
+		text := reader.Text()
+
+		commandName := cleanInput(text)[0]
+
+		err := executeCommand(commandName)
 
 		if err != nil {
 			fmt.Println(err.Error())
