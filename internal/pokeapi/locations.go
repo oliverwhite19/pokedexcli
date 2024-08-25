@@ -10,14 +10,12 @@ type locations struct {
 	}
 }
 
-func GetLocations(link string) (locations, error) {
+func (c *Client) GetLocations(link string) (locations, error) {
 
 	var result locations
-	decoder, err := getRequest(link)
+
+	result, err := c.getRequest(link)
 	if err != nil {
-		return locations{}, err
-	}
-	if err := decoder.Decode(&result); err != nil {
 		return locations{}, err
 	}
 

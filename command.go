@@ -1,5 +1,9 @@
 package main
 
+import (
+	"github.com/oliverwhite19/pokedexcli/internal/pokeapi"
+)
+
 type cliCommand struct {
 	name        string
 	description string
@@ -9,6 +13,7 @@ type cliCommand struct {
 type memory struct {
 	previousLocations *string
 	nextLocations     *string
+	pokeClient        pokeapi.Client
 }
 
 func getCommands() map[string]cliCommand {

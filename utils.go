@@ -2,6 +2,9 @@ package main
 
 import (
 	"strings"
+	"time"
+
+	"github.com/oliverwhite19/pokedexcli/internal/pokeapi"
 )
 
 func cleanInput(text string) []string {
@@ -12,10 +15,13 @@ func cleanInput(text string) []string {
 
 func initializeMemory() memory {
 
-	initialLocations := "https://pokeapi.co/api/v2/location-area/"
+	initialLocations := "https://pokeapi.co/api/v2/location-area/?offset=0&limit=20"
+
+	pokeDexClient := pokeapi.NewClient(5*time.Second, time.Minute*5)
 
 	return memory{
 		previousLocations: nil,
 		nextLocations:     &initialLocations,
+		pokeClient:        pokeDexClient,
 	}
 }

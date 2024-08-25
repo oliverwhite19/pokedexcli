@@ -3,12 +3,10 @@ package main
 import (
 	"errors"
 	"fmt"
-
-	"github.com/oliverwhite19/pokedexcli/pokeapi"
 )
 
 func baseMap(link string, mem *memory) error {
-	result, err := pokeapi.GetLocations(link)
+	result, err := mem.pokeClient.GetLocations(link)
 
 	if err != nil {
 		return err
