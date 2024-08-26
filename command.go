@@ -14,6 +14,7 @@ type memory struct {
 	previousLocations *string
 	nextLocations     *string
 	pokeClient        pokeapi.Client
+	capturedPokemon   map[string]pokeapi.ResponsePokemon
 }
 
 func getCommands() map[string]cliCommand {
@@ -34,9 +35,14 @@ func getCommands() map[string]cliCommand {
 			callback:    commandMapB,
 		},
 		"explore": {
-			name:        "explore",
-			description: "Displays the Pokemon available in a location. Accepts a location name as parameter",
+			name:        "explore <location_name>",
+			description: "Explores a location",
 			callback:    commandExplore,
+		},
+		"catch": {
+			name:        "catch <pokemon_name>",
+			description: "Attempts to catch a pokemon",
+			callback:    commandCatch,
 		},
 		"exit": {
 			name:        "exit",

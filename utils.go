@@ -23,5 +23,6 @@ func initializeMemory() memory {
 		previousLocations: nil,
 		nextLocations:     &initialLocations,
 		pokeClient:        pokeDexClient,
+		capturedPokemon:   make(map[string]pokeapi.ResponsePokemon),
 	}
 }
