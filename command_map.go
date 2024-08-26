@@ -23,11 +23,11 @@ func baseMap(link string, mem *memory) error {
 
 }
 
-func commandMap(mem *memory) error {
+func commandMap(mem *memory, _ ...string) error {
 	return baseMap(*mem.nextLocations, mem)
 }
 
-func commandMapB(mem *memory) error {
+func commandMapB(mem *memory, _ ...string) error {
 	if mem.previousLocations == nil {
 		return errors.New("no previous locations available")
 	}

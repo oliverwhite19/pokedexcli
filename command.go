@@ -7,7 +7,7 @@ import (
 type cliCommand struct {
 	name        string
 	description string
-	callback    func(*memory) error
+	callback    func(*memory, ...string) error
 }
 
 type memory struct {
@@ -32,6 +32,11 @@ func getCommands() map[string]cliCommand {
 			name:        "mapb",
 			description: "Displays the previous 20 map locations",
 			callback:    commandMapB,
+		},
+		"explore": {
+			name:        "explore",
+			description: "Displays the Pokemon available in a location. Accepts a location name as parameter",
+			callback:    commandExplore,
 		},
 		"exit": {
 			name:        "exit",

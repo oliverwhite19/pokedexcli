@@ -15,14 +15,14 @@ func repl() {
 
 		text := reader.Text()
 
-		commandName := cleanInput(text)[0]
+		commands := cleanInput(text)
 
-		selectedCommand, ok := getCommands()[commandName]
+		selectedCommand, ok := getCommands()[commands[0]]
 		if !ok {
 			fmt.Println("invalid command selected: try `help` to see available commands")
 			os.Exit(1)
 		}
-		err := selectedCommand.callback(&mem)
+		err := selectedCommand.callback(&mem, commands[1:]...)
 
 		if err != nil {
 			fmt.Println(err.Error())
