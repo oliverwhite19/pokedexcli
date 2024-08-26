@@ -5,13 +5,13 @@ import (
 )
 
 type ResponseLocations struct {
-	Count    int
-	Next     *string
-	Previous *string
+	Count    int     `json:"count"`
+	Next     *string `json:"next"`
+	Previous *string `json:"previous"`
 	Results  []struct {
-		Name string
-		URL  string
-	}
+		Name string `json:"name"`
+		URL  string `json:"url"`
+	} `json:"results"`
 }
 
 type ResponseLocation struct {
